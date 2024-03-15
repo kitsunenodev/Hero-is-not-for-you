@@ -41,7 +41,7 @@ public class SceneManager : MonoBehaviour
 
     public void LoadGameOverScene()
     {
-        LoadScene(GameOverSceneName);
+        LoadScene(MainMenuSceneName);
     }
 
     public void LoadVictoryScene()

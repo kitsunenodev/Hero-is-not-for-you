@@ -207,6 +207,6 @@ public class GameController : MonoBehaviour
     
     public void GameOver()
     {
-        GameController.Instance.sceneManager.LoadGameOverScene();
+        Instance.sceneManager.LoadGameOverScene();
     }
 }
