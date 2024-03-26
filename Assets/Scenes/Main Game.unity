@@ -3330,7 +3330,7 @@ MonoBehaviour:
     - {fileID: 3464789282538038279, guid: 2ec12f151fa7ae047a41cc1867b0d0f6, type: 3}
     - {fileID: 4609781119493333728, guid: 6e9a6a632d40a25438754a2b54b271bd, type: 3}
     - {fileID: 6789511984893395686, guid: 6739325e352e2c345a5a72091222056c, type: 3}
-    monster: 0000000000000000
+    monster: 0000000002000000
     spawn: {fileID: 0}
     startingTime: 10
     waitingTime: 15

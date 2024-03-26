@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DemonDetectionController : MonoBehaviour
@@ -18,6 +17,7 @@ public class DemonDetectionController : MonoBehaviour
             {
                 parent.hasBeenHit = false;
             }
+            Debug.Log(other.gameObject);
             parent.anim.SetBool("isTriggered", true);
             parent.target = other.transform;
         }

@@ -216,12 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f98f9355733434abf0ff096a8375d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 100
+  maxLife: 10
   target: {fileID: 0}
   maxWalkSpeed: 20
   walkSpeed: 0.001
   triggerSpeed: 0
-  damage: 2
+  damage: 3
   anim: {fileID: 0}
   walkRight: 1
   triggered: 0

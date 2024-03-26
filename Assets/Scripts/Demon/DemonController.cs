@@ -65,7 +65,7 @@ public class DemonController : MonoBehaviour
         _healthSlider = _canvasUI.GetComponentInChildren<Slider>();
         _healthText = _canvasUI.GetComponentInChildren<TextMeshProUGUI>();
         _currentLife = maxLife;
-        _healthSlider.maxValue = _healthSlider.value = maxLife;
+        _healthSlider.value = _healthSlider.maxValue = maxLife;
         _healthText.text = $"{_currentLife}/{maxLife}";
     }
 
@@ -90,7 +90,8 @@ public class DemonController : MonoBehaviour
         walkRight = !walkRight;
         _localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
         transform.localScale = _localScale;
-        _canvasScale = new Vector3(-_canvasScale.x, _canvasScale.x, _canvasScale.x);
+        _canvasScale = new Vector3(-_canvasScale.x, _canvasScale.y, _canvasScale.z);
+        _canvasUI.transform.localScale = _canvasScale;
     }
 
     void Move()
