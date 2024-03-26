@@ -146,7 +146,7 @@ public class GameController : MonoBehaviour
 
     public void PlayerHitDemon(DemonController demon, PlayerController playerController)
     {
-        demon.Hurt(playerStats.strength, playerController);
+        demon.TakeDamage(playerStats.strength, playerController);
         if (demon.isDetected && playerController.isDetected)
         {
             mother.SpotPlayerHittingSomething();
@@ -161,7 +161,7 @@ public class GameController : MonoBehaviour
         if (demon.isDetected && playerController.isDetected)
         {
             mother.SpotPlayerBeingHit();
-            demon.Hurt(999, playerController);
+            demon.TakeDamage(999, playerController);
         }
        
     }

@@ -1,9 +1,14 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class DemonController : MonoBehaviour
 {
-    public int life;
+    public int maxLife;
+
+    private int _currentLife;
 
     public Transform target;
 
@@ -39,6 +44,14 @@ public class DemonController : MonoBehaviour
 
     public Collider2D hurtBox;
 
+    private Canvas _canvasUI;
+
+    private Vector3 _canvasScale;
+
+    private TextMeshProUGUI _healthText;
+
+    private Slider _healthSlider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +60,13 @@ public class DemonController : MonoBehaviour
         anim = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
         walkSpeed = maxWalkSpeed;
+        _canvasUI = GetComponentInChildren<Canvas>();
+        _canvasScale = _canvasUI.transform.localScale;
+        _healthSlider = _canvasUI.GetComponentInChildren<Slider>();
+        _healthText = _canvasUI.GetComponentInChildren<TextMeshProUGUI>();
+        _currentLife = maxLife;
+        _healthSlider.maxValue = _healthSlider.value = maxLife;
+        _healthText.text = $"{_currentLife}/{maxLife}";
     }
 
     // Update is called once per frame
@@ -70,6 +90,7 @@ public class DemonController : MonoBehaviour
         walkRight = !walkRight;
         _localScale = new Vector3(-_localScale.x, _localScale.y, _localScale.z);
         transform.localScale = _localScale;
+        _canvasScale = new Vector3(-_canvasScale.x, _canvasScale.x, _canvasScale.x);
     }
 
     void Move()
@@ -114,9 +135,9 @@ public class DemonController : MonoBehaviour
         GameController.Instance.DemonHitPlayer(this,player);
     }
 
-    public void Hurt(int damageAmount, PlayerController player)
+    public void TakeDamage(int damageAmount, PlayerController player)
     {
-        if (damageAmount >= life)
+        if (damageAmount >= maxLife)
         {
             GameController.Instance.KilledMonster();
             Destroy(gameObject);
@@ -124,7 +145,8 @@ public class DemonController : MonoBehaviour
         else
         {
              hasBeenHit = true;
-             life -= damage;
+             _currentLife -= damage;
+             UpdateHealth();
              target = player.transform;
              StartCoroutine(RecoveryTime());
         }
@@ -167,6 +189,10 @@ public class DemonController : MonoBehaviour
         yield return new WaitForSeconds(2);
         hurtBox.gameObject.SetActive(false);
     }
-    
-    
+
+    void UpdateHealth()
+    {
+        _healthSlider.value = _currentLife;
+        _healthText.text = $"{_currentLife}/{maxLife}";
+    }
 }
